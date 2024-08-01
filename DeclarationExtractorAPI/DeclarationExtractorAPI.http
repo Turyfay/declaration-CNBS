@@ -1,0 +1,6 @@
+@DeclarationExtractorAPI_HostAddress = http://localhost:5224
+
+GET {{DeclarationExtractorAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
