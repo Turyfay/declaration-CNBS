@@ -11,7 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DeclarationsLibrary\DeclarationsLibrary.csproj" />
+    <ProjectReference Include="..\Declaration.Application\Declaration.Application.csproj" />
+    <ProjectReference Include="..\Declaration.Infrastructure\Declaration.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
