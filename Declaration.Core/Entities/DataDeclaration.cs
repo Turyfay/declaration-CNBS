@@ -11,13 +11,13 @@ namespace Declaration.Core.Entities
     {
         [JsonPropertyName("DDT")]
         public required DDT DDT { get; set; }
-        //[JsonPropertyName("ART")]
-        //public required List<ART> ART { get; set; }
+        [JsonPropertyName("ART")]
+        public required List<ART> ART { get; set; }
 
-        //[JsonPropertyName("LIQ")]
-        //public required LIQ LIQ { get; set; }
-        //[JsonPropertyName("LQA")]
-        //public List<LQA>? LQA { get; set; }
+        [JsonPropertyName("LIQ")]
+        public required LIQ LIQ { get; set; }
+        [JsonPropertyName("LQA")]
+        public List<LQA>? LQA { get; set; }
 
     }
 }

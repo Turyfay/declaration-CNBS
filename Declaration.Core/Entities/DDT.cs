@@ -123,5 +123,9 @@ namespace Declaration.Core.Entities
 
         [JsonPropertyName("Cddtobs")]
         public string? Cddtobs { get; set; }
+
+        public LIQ LIQ { get; set; }
+
+        public ICollection<ART> ARTS { get; set; }
     }
 }
