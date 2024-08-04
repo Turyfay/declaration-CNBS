@@ -26,22 +26,22 @@ namespace Declaration.Core.Common
 
         public static async System.Threading.Tasks.Task<string> DecompressAsync(string compressedString)
         {
-            try
+            if (string.IsNullOrEmpty(compressedString))
             {
-                using (MemoryStream msi = new
-                MemoryStream(Convert.FromBase64String(compressedString)))
-                using (MemoryStream mso = new MemoryStream())
-                {
-                    using (var gs = new GZipStream(msi, CompressionMode.Decompress))
-                    {
-                        await gs.CopyToAsync(mso);
-                    }
-                    return Encoding.UTF8.GetString(mso.ToArray());
-                }
+                throw new ArgumentException("The compressed string cannot be null or empty.", nameof(compressedString));
             }
-            catch (Exception ex)
+
+            byte[] compressedBytes = Convert.FromBase64String(compressedString);
+
+            using (var msi = new MemoryStream(compressedBytes))
+            using (var mso = new MemoryStream())
             {
-                throw ex;
+                using (var gs = new GZipStream(msi, CompressionMode.Decompress))
+                {
+                    await gs.CopyToAsync(mso, 81920); // Use a buffer size of 80 KB
+                }
+
+                return Encoding.UTF8.GetString(mso.ToArray());
             }
 
         }
