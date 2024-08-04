@@ -9,9 +9,9 @@ namespace Declaration.Core.Entities
 {
     public class TestDataDeclaration
     {
-        public required BigInteger nroTransaccion { get; set; }
+        //public required BigInteger nroTransaccion { get; set; }
 
-        public required DateTime fechaHoraTrn { get; set; }
+        //public required DateTime fechaHoraTrn { get; set; }
 
         public required string fechaAConsultar { get; set; }
 

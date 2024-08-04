@@ -1,5 +1,11 @@
+using Declaration.Core.Interfaces;
+using Declaration.Core.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Register your service
+builder.Services.AddTransient<IDataDeclarationService, DataDeclarationService>();
 
 // Add services to the container.
 
