@@ -1,4 +1,5 @@
-﻿using Declaration.Core.Entities;
+﻿using Declaration.Core.Common;
+using Declaration.Core.Entities;
 using Declaration.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -36,13 +37,17 @@ namespace Declaration.Core.Services
             string xmlContent = await response.Content.ReadAsStringAsync();
             XDocument xmlDoc = XDocument.Parse(xmlContent);
 
+            string compressedData = xmlDoc.Root.Element("datosComprimidos").Value;
+            string decompressedData = await JsonTextDeclarationHelpe.DecompressAsync(compressedData);
+
+
             var testData = new TestDataDeclaration
             {
                 //nroTransaccion = BigInteger.Parse(xmlDoc.Root.Element("nroTransaccion").Value),
                 //fechaHoraTrn = DateTime.Parse(xmlDoc.Root.Element("fechaHoraTrn").Value),
                 fechaAConsultar = xmlDoc.Root.Element("fechaAConsultar").Value,
                 cuentaDeclaraciones = int.Parse(xmlDoc.Root.Element("cuentaDeclaraciones").Value),
-                datosComprimidos = xmlDoc.Root.Element("datosComprimidos").Value
+                datosComprimidos = decompressedData
             };
 
             return testData;
