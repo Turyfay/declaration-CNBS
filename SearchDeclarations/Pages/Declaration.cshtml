@@ -1,0 +1,66 @@
+﻿@page
+@model DeclarationModel
+@{
+    ViewData["Title"] = "Declaraciones";
+}
+    <h1>@ViewData["Title"]</h1>
+    <form method="post">
+        <div class="input-group mb-3">
+            <input id="searchParameter" name="SearchParameter" type="text" class="form-control" placeholder="Buscar declaración" aria-label="Recipient's username" aria-describedby="button-addon2" value="@Model.SearchParameter">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+        </div>
+    </form>
+
+    @if(false){
+        <div class="d-flex align-items-center">
+            <strong>Cargando...</strong>
+            <div class="spinner-border ms-auto text-info" role="status" aria-hidden="true"></div>
+        </div>
+    }
+
+    @if (Model.SearchResults.Any())
+    {
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+           
+            @foreach (var itemDeclaration in Model.SearchResults)
+             {
+                <div class="col">
+                    <div class="card">
+                        <img width="10px" height="200px" src="/img/declaracion2.png" class="card-img-top" alt="...">
+                    <div class="btn-group btn-group-sm text-center mx-auto" role="group" aria-label="...">
+                        <button type="button" class="btn btn-outline-primary">Liquidación</button>
+                        <button type="button" class="btn btn-outline-primary">Articulos</button>
+                    </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@itemDeclaration.Nddtimmioe</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Iddt: @itemDeclaration.Iddt</h6>
+                        <p class="card-text"><strong>Lddtagr:</strong> <span>@itemDeclaration.Lddtagr</span></p>
+                        <p class="card-text"><strong>Lddtnomioe:</strong> <span>@itemDeclaration.Lddtnomioe</span></p>
+                        <p class="card-text"><strong>Fecha:</strong> <span>@itemDeclaration.Dddtbae</span></p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+            
+        </div>
+}
+else if (Model.SearchParameter != null)
+{
+           <div class="card text-center">
+            <div class="card-header">
+            Información
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">No se encontro información</h5>
+                <p class="card-text">Revisa el Nddtimmioe que sea el correcto.</p>
+            </div>
+            
+        </div>
+}
+
+
+    
+
+
+
