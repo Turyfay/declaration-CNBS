@@ -1,4 +1,5 @@
 ﻿@page
+@using Newtonsoft.Json
 @model DeclarationModel
 @{
     ViewData["Title"] = "Declaraciones";
@@ -28,8 +29,8 @@
                     <div class="card">
                         <img width="10px" height="200px" src="/img/declaracion2.png" class="card-img-top" alt="...">
                     <div class="btn-group btn-group-sm text-center mx-auto" role="group" aria-label="...">
-                        <button type="button" class="btn btn-outline-primary">Liquidación</button>
-                        <button type="button" class="btn btn-outline-primary">Articulos</button>
+                        <a class="btn btn-outline-primary" asp-area="" asp-page="/LIQ" asp-route-liq="@itemDeclaration.Iddt">Liquidación</a>
+                        <a class="btn btn-outline-primary" asp-area="" asp-page="/Index">Articulos</a>
                     </div>
                         <div class="card-body">
                             <h5 class="card-title">@itemDeclaration.Nddtimmioe</h5>

@@ -10,5 +10,6 @@ namespace Declaration.Core.Interfaces
     public interface ISearchDeclarationService
     {
         Task<List<DDT>> SearchDeclarationAsync(string Nddtimmioe);
+        Task<LIQ> SearchLIQAsync(string Iliq);
     }
 }

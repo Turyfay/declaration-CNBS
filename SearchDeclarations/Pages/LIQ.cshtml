@@ -1,0 +1,25 @@
+﻿@page
+@model SearchDeclarations.Pages.LIQModel
+@{
+    ViewData["Title"] = "Liquidación";
+}
+<h1>@ViewData["Title"]</h1>
+
+@if (Model.DataLIQ != null)
+{
+
+    <div class="card">
+        <div class="card-header">
+            @Model.DataLIQ.Iliq
+        </div>
+        <div class="card-body">
+            <p><strong>Cliqdop:</strong> @Model.DataLIQ.Cliqdop</p>
+            <p><strong>Cliqeta:</strong> @Model.DataLIQ.Cliqeta</p>
+        </div>
+    </div>
+}
+else
+{
+    <p>No LIQ</p>
+}
+

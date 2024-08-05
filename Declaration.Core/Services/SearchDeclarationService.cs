@@ -24,5 +24,12 @@ namespace Declaration.Core.Services
             dDTs =  await context.DDTs.Where(d => d.Nddtimmioe.Contains(Nddtimmioe)).ToListAsync();
             return dDTs;
         }
+        public async Task<LIQ> SearchLIQAsync(string Iliq)
+        {
+            LIQ? liq;
+            using var context = _contextFactory.CreateDbContext();
+            liq = await context.LIQs.SingleOrDefaultAsync(l => l.Iliq == Iliq);
+            return liq;
+        }
     }
 }
