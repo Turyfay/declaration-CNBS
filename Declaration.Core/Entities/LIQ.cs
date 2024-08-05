@@ -22,9 +22,11 @@ namespace Declaration.Core.Entities
         public required string Cliqeta { get; set; }
 
         [JsonPropertyName("Mliq")]
+        [Column(TypeName = "decimal(18,2)")]
         public required decimal Mliq { get; set; }
 
         [JsonPropertyName("Mliqgar")]
+        [Column(TypeName = "decimal(18,2)")]
         public required decimal Mliqgar { get; set; }
 
         [JsonPropertyName("Dlippay")]

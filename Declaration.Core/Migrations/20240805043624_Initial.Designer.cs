@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Declaration.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240804181827_Initial")]
+    [Migration("20240805043624_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -122,7 +122,7 @@ namespace Declaration.Core.Migrations
                         .HasAnnotation("Relational:JsonPropertyName", "Martfrai");
 
                     b.Property<decimal?>("Martunitar")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("decimal(18,4)")
                         .HasAnnotation("Relational:JsonPropertyName", "Martunitar");
 
                     b.Property<int?>("Nartapu")
@@ -134,11 +134,11 @@ namespace Declaration.Core.Migrations
                         .HasAnnotation("Relational:JsonPropertyName", "Qartbul");
 
                     b.Property<decimal?>("Qartkgrbrt")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("decimal(18,3)")
                         .HasAnnotation("Relational:JsonPropertyName", "Qartkgrbrt");
 
                     b.Property<decimal?>("Qartkgrnet")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("decimal(18,3)")
                         .HasAnnotation("Relational:JsonPropertyName", "Qartkgrnet");
 
                     b.Property<decimal?>("Qartuntdcl")
@@ -310,7 +310,7 @@ namespace Declaration.Core.Migrations
                         .HasAnnotation("Relational:JsonPropertyName", "Nddtimmioe");
 
                     b.Property<decimal>("Qddttaxchg")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("decimal(12,6)")
                         .HasAnnotation("Relational:JsonPropertyName", "Qddttaxchg");
 
                     b.HasKey("Iddt");
@@ -374,15 +374,15 @@ namespace Declaration.Core.Migrations
                         .HasAnnotation("Relational:JsonPropertyName", "Clqatyp");
 
                     b.Property<decimal?>("Mlqa")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("decimal(18,4)")
                         .HasAnnotation("Relational:JsonPropertyName", "Mlqa");
 
                     b.Property<decimal?>("Mlqabas")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("decimal(18,4)")
                         .HasAnnotation("Relational:JsonPropertyName", "Mlqabas");
 
                     b.Property<decimal?>("Qlqacoefic")
-                        .HasColumnType("decimal(18,2)")
+                        .HasColumnType("decimal(18,6)")
                         .HasAnnotation("Relational:JsonPropertyName", "Qlqacoefic");
 
                     b.HasKey("Iliq", "Nart", "Clqatax", "Clqatyp");

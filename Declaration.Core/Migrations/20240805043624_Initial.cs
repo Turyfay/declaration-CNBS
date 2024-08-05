@@ -24,7 +24,7 @@ namespace Declaration.Core.Migrations
                     Dddtoficia = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Dddtrectifa = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Cddtcirvis = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Qddttaxchg = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Qddttaxchg = table.Column<decimal>(type: "decimal(12,6)", nullable: false),
                     Ista = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cddtbur = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cddtburdst = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -66,9 +66,9 @@ namespace Declaration.Core.Migrations
                     Nart = table.Column<int>(type: "int", nullable: false),
                     Clqatax = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Clqatyp = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Mlqabas = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Qlqacoefic = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Mlqa = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    Mlqabas = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
+                    Qlqacoefic = table.Column<decimal>(type: "decimal(18,6)", nullable: true),
+                    Mlqa = table.Column<decimal>(type: "decimal(18,4)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -92,13 +92,13 @@ namespace Declaration.Core.Migrations
                     Iddtapu = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nartapu = table.Column<int>(type: "int", nullable: true),
                     Qartbul = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Martunitar = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Martunitar = table.Column<decimal>(type: "decimal(18,4)", nullable: true),
                     Cartuntdcl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Qartuntdcl = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Cartuntest = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Qartuntest = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Qartkgrbrt = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Qartkgrnet = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Qartkgrbrt = table.Column<decimal>(type: "decimal(18,3)", nullable: true),
+                    Qartkgrnet = table.Column<decimal>(type: "decimal(18,3)", nullable: true),
                     Martfob = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Martfobdol = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Martfle = table.Column<decimal>(type: "decimal(18,2)", nullable: true),

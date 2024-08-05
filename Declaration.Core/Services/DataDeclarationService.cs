@@ -5,6 +5,7 @@ using Declaration.Core.Data;
 using Newtonsoft.Json;
 using System.Xml.Linq;
 using Microsoft.EntityFrameworkCore;
+using EFCore.BulkExtensions;
 
 namespace Declaration.Core.Services
 {
@@ -75,7 +76,6 @@ namespace Declaration.Core.Services
             await BulkInsert(ddtEntities);
             var tasks = new List<Task>
             {
-                Task.Run(() => BulkInsert(ddtEntities)),
                 Task.Run(() => BulkInsert(liqEntities)),
                 Task.Run(() => BulkInsert(artEntities)),
                 Task.Run(() => BulkInsert(lqaEntities))
@@ -89,19 +89,11 @@ namespace Declaration.Core.Services
         private async Task BulkInsert<T>(List<T> entities) where T : class
         {
             const int batchSize = 1000;
+            using var context = _contextFactory.CreateDbContext();
             for (int i = 0; i < entities.Count; i += batchSize)
             {
                 var batch = entities.Skip(i).Take(batchSize).ToList();
-                using var context = _contextFactory.CreateDbContext();
-                context.Set<T>().AddRange(batch);
-                try
-                {
-                    await context.SaveChangesAsync();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error al guardar cambios: " + ex.Message);
-                }
+                await context.BulkInsertAsync(batch);
             }
         }
     }

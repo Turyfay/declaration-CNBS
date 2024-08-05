@@ -51,54 +51,69 @@ namespace Declaration.Core.Entities
         public int? Nartapu { get; set; }
 
         [JsonPropertyName("Qartbul")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Qartbul { get; set; }
 
         [JsonPropertyName("Martunitar")]
+        [Column(TypeName = "decimal(18,4)")]
         public decimal? Martunitar { get; set; }
 
         [JsonPropertyName("Cartuntdcl")]
         public string? Cartuntdcl { get; set; }
 
         [JsonPropertyName("Qartuntdcl")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Qartuntdcl { get; set; }
 
         [JsonPropertyName("Cartuntest")]
         public string? Cartuntest { get; set; }
 
         [JsonPropertyName("Qartuntest")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Qartuntest { get; set; }
 
         [JsonPropertyName("Qartkgrbrt")]
+        [Column(TypeName = "decimal(18,3)")]
         public decimal? Qartkgrbrt { get; set; }
 
         [JsonPropertyName("Qartkgrnet")]
+        [Column(TypeName = "decimal(18,3)")]
         public decimal? Qartkgrnet { get; set; }
 
         [JsonPropertyName("Martfob")]
+        [Column(TypeName = "decimal(18,2)")]
         public required decimal Martfob { get; set; }
 
         [JsonPropertyName("Martfobdol")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Martfobdol { get; set; }
 
         [JsonPropertyName("Martfle")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Martfle { get; set; }
 
         [JsonPropertyName("Martass")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Martass { get; set; }
 
         [JsonPropertyName("Martemma")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Martemma { get; set; }
 
         [JsonPropertyName("Martfrai")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Martfrai { get; set; }
 
         [JsonPropertyName("Martajuinc")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Martajuinc { get; set; }
 
         [JsonPropertyName("Martajuded")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal? Martajuded { get; set; }
 
         [JsonPropertyName("Martbasimp")]
+        [Column(TypeName = "decimal(18,2)")]
         public required decimal Martbasimp { get; set; }
 
         

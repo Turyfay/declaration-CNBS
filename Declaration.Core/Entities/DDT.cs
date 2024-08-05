@@ -41,6 +41,7 @@ namespace Declaration.Core.Entities
         public string? Cddtcirvis { get; set; }
 
         [JsonPropertyName("Qddttaxchg")]
+        [Column(TypeName = "decimal(12,6)")]
         public required decimal Qddttaxchg { get; set; }
 
         [JsonPropertyName("Ista")]

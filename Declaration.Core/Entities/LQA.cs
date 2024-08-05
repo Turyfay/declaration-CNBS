@@ -26,12 +26,15 @@ namespace Declaration.Core.Entities
         public string? Clqatyp { get; set; }
 
         [JsonPropertyName("Mlqabas")]
+        [Column(TypeName = "decimal(18,4)")]
         public decimal? Mlqabas { get; set; }
 
         [JsonPropertyName("Qlqacoefic")]
+        [Column(TypeName = "decimal(18,6)")]
         public decimal? Qlqacoefic { get; set; }
 
         [JsonPropertyName("Mlqa")]
+        [Column(TypeName = "decimal(18,4)")]
         public decimal? Mlqa { get; set; }
 
 
