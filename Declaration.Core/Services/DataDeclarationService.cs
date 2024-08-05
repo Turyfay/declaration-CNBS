@@ -50,23 +50,31 @@ namespace Declaration.Core.Services
 
             List<DataDeclaration>? oDataDeclarations = JsonConvert.DeserializeObject<List<DataDeclaration>>(decompressedData);
             List<DDT> ddtEntities = new List<DDT>();
+            List<LIQ> liqEntities = new List<LIQ>();
             List<LQA> lqaEntities = new List<LQA>();
+            List<ART> artEntities = new List<ART>();
             if (oDataDeclarations != null && oDataDeclarations.Count > 0)
             {
                 foreach (DataDeclaration itemDeclaration in oDataDeclarations)
                 {
-                    itemDeclaration.DDT.LIQ = itemDeclaration.LIQ;
-                    itemDeclaration.DDT.ARTS = itemDeclaration.ART;
+                    
+                    ddtEntities.Add(itemDeclaration.DDT);
+                    liqEntities.Add(itemDeclaration.LIQ);
+                    if(itemDeclaration.ART != null)
+                    {
+                        artEntities.AddRange(itemDeclaration.ART);
+                    }
                     if (itemDeclaration.LQA != null)
                     {
                         lqaEntities.AddRange(itemDeclaration.LQA);
                     }
-                    ddtEntities.Add(itemDeclaration.DDT);
                 }
             }
             await _applicationDbContext.DDTs.AddRangeAsync(ddtEntities);
-            _applicationDbContext.LQAs.AddRange(lqaEntities);
-            _applicationDbContext.SaveChanges();
+            await _applicationDbContext.LIQs.AddRangeAsync(liqEntities);
+            await _applicationDbContext.ARTs.AddRangeAsync(artEntities);
+            await _applicationDbContext.LQAs.AddRangeAsync(lqaEntities);
+            await _applicationDbContext.SaveChangesAsync();
 
             return testDataDeclaration;
         }
