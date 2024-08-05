@@ -4,6 +4,7 @@ using Declaration.Core.Interfaces;
 using Declaration.Core.Data;
 using Newtonsoft.Json;
 using System.Xml.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Declaration.Core.Services
 {
@@ -11,17 +12,18 @@ namespace Declaration.Core.Services
     {
 
         private readonly HttpClient _httpClient;
-        private readonly ApplicationDbContext _applicationDbContext;
+        private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
 
-        public DataDeclarationService(ApplicationDbContext applicationDbContext)
+        public DataDeclarationService(IDbContextFactory<ApplicationDbContext> contextFactory)
         {
-            _applicationDbContext = applicationDbContext;
+            _contextFactory = contextFactory;
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri("https://iis-des.cnbs.gob.hn/ws.TestData/")
             };
             _httpClient.DefaultRequestHeaders.Add("ApiKey", "MEYwMEJGQ0E3QUNDN0MxNTg2M0UyOEE1QTU0MTcwM0FBQjUwNjE4MkFGNjQ0RjMyQUNCMDI1OTdDMjUwMDREOA==");
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/xml");
+            
         }
 
         public async Task<TestDataDeclaration> GetTestDataDeclarationAsync(string requestParameter)
@@ -70,13 +72,37 @@ namespace Declaration.Core.Services
                     }
                 }
             }
-            await _applicationDbContext.DDTs.AddRangeAsync(ddtEntities);
-            await _applicationDbContext.LIQs.AddRangeAsync(liqEntities);
-            await _applicationDbContext.ARTs.AddRangeAsync(artEntities);
-            await _applicationDbContext.LQAs.AddRangeAsync(lqaEntities);
-            await _applicationDbContext.SaveChangesAsync();
+            await BulkInsert(ddtEntities);
+            var tasks = new List<Task>
+            {
+                Task.Run(() => BulkInsert(ddtEntities)),
+                Task.Run(() => BulkInsert(liqEntities)),
+                Task.Run(() => BulkInsert(artEntities)),
+                Task.Run(() => BulkInsert(lqaEntities))
+            };
+
+            await Task.WhenAll(tasks);
 
             return testDataDeclaration;
+        }
+
+        private async Task BulkInsert<T>(List<T> entities) where T : class
+        {
+            const int batchSize = 1000;
+            for (int i = 0; i < entities.Count; i += batchSize)
+            {
+                var batch = entities.Skip(i).Take(batchSize).ToList();
+                using var context = _contextFactory.CreateDbContext();
+                context.Set<T>().AddRange(batch);
+                try
+                {
+                    await context.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al guardar cambios: " + ex.Message);
+                }
+            }
         }
     }
 }
